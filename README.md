@@ -49,20 +49,24 @@ To install and run this application locally, follow these steps:
 
    ```bash
    git clone https://github.com/Armish11/ZenithTimes.git
-
+   ```
 
 2. **Navigate to the project directory:**
+   ```bash
    cd ZenithTimes
-
+   ```
 3. **Install dependencies using npm:**
+   ```bash
    npm install
-
+   ```
 4. **Start the development server:**
+   ```bash
    npm start
-
+   ```
 5. **Open your web browser and navigate to:**
+   ```bash
    http://localhost:3000
-   
+   ```
 ###   Usage
 1. General Instructions
 2. Open the app in your web browser.
