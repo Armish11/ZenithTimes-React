@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/ZenithTimes-React/static/css/main.dc4d6ff2.css",
+    "main.js": "/ZenithTimes-React/static/js/main.3ca701b7.js",
+    "static/js/453.b2157c12.chunk.js": "/ZenithTimes-React/static/js/453.b2157c12.chunk.js",
+    "static/media/loading.gif": "/ZenithTimes-React/static/media/loading.63507eaba90fa0fb0eb0.gif",
+    "index.html": "/ZenithTimes-React/index.html",
+    "main.dc4d6ff2.css.map": "/ZenithTimes-React/static/css/main.dc4d6ff2.css.map",
+    "main.3ca701b7.js.map": "/ZenithTimes-React/static/js/main.3ca701b7.js.map",
+    "453.b2157c12.chunk.js.map": "/ZenithTimes-React/static/js/453.b2157c12.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.dc4d6ff2.css",
+    "static/js/main.3ca701b7.js"
+  ]
+}
