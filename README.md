@@ -48,12 +48,12 @@ To install and run this application locally, follow these steps:
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/Armish11/ZenithTimes.git
+   git clone https://github.com/Armish11/ZenithTimes-React.git
    ```
 
 2. **Navigate to the project directory:**
    ```bash
-   cd ZenithTimes
+   cd ZenithTimes-React
    ```
 3. **Install dependencies using npm:**
    ```bash
@@ -86,7 +86,7 @@ We welcome contributions to improve this application. Please follow these steps:
 
 1. Fork the repository or clone it locally:
    ```bash
-   git clone https://github.com/Armish11/ZenithTimes.git
+   git clone https://github.com/Armish11/ZenithTimes-React.git
    ```
 2. Create a new branch:
    ```bash
@@ -104,7 +104,7 @@ We welcome contributions to improve this application. Please follow these steps:
 
 
 ### License
-This project is licensed under the MIT LICENSE. See the [LICENSE][./LICENSE] file for more details.
+This project is licensed under the MIT LICENSE. See the [LICENSE](./LICENSE)file for more details.
 
 ## Contact
 
