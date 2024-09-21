@@ -37,6 +37,31 @@ Toggle between dark and light themes for a better reading experience based on us
 
 Browse news articles based on different categories such as General, Technology, Sports, etc. The app dynamically fetches articles based on the selected category.
 
+### User Interface Overview
+### Home Page
+The **ZenithTimes** home page is designed to offer users an immersive and seamless news-reading experience, with intuitive navigation and smooth interactions. Below is a breakdown of the key elements:
+
+- **Navigation Bar**: Positioned at the top of the page, the navigation bar includes:
+
+- **Category Links**: Tabs for different news categories like General, Technology, Sports, and more, allowing users to filter news based on their interests.
+Dark/Light Mode Toggle: A switch in the top right corner for users to toggle between dark and light themes. The toggle ensures the app adapts to user preferences, with the theme stored locally for future visits.
+News Feed (Infinite Scrolling): The main section of the page is dedicated to the news feed:
+
+- **Article Cards**: Each article is presented in a card format, showing a thumbnail image, headline, a brief description, and a publication date.
+Infinite Scroll: As the user scrolls down, more news articles automatically load without needing to click or navigate, ensuring a smooth, uninterrupted reading experience.
+Category-Specific Filtering: When a user selects a category from the navbar, the articles in the news feed dynamically update to reflect the most recent and relevant news within that category.
+
+- **Responsive Design**: The layout adapts seamlessly to different devices:
+
+- **Desktop View**: Articles are presented in a grid format, with multiple columns for efficient browsing.
+- **Mobile View**: The grid collapses into a single column, making the articles easy to browse and read on smaller screens without compromising readability.
+Footer Section: At the bottom of the page, the footer includes links to social media profiles, a brief description of the app, and legal disclaimers such as the terms of use and privacy policy.
+
+This design ensures that ZenithTimes provides a fluid, engaging experience regardless of device or browsing habits.
+![zenithtimes-UI](./public/news-1.png)
+![zenithtimes-UI](./public/news-2.png)
+
+
 ### Responsive Design
 
 The app is fully responsive and works seamlessly on desktops, tablets, and mobile devices.
