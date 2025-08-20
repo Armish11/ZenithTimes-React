@@ -129,7 +129,7 @@ We welcome contributions to improve this application. Please follow these steps:
 
 
 ### License
-This project is licensed under the MIT LICENSE. See the [LICENSE](./LICENSE)file for more details.
+This project is licensed under the MIT LICENSE. See the [LICENSE](./LICENSE) file for more details.
 
 ## Contact
 

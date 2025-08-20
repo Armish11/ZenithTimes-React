@@ -4,13 +4,10 @@ import Spinner from './Spinner';
 import PropTypes from 'prop-types';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
-// Destructure props with default values directly in the function signature
 const News = ({
   apiKey,
   setProgress,
   category = 'general',
-  country = 'pk',
-  max = 8,
   mode,
 }) => {
   const [articles, setArticles] = useState([]);
@@ -22,48 +19,42 @@ const News = ({
     return string.replace(/^\w/, (c) => c.toUpperCase());
   };
 
-  const updateNews = async () => {
-    const url = `https://gnews.io/api/v4/top-headlines?category=${category}&lang=en&country=${country}&max=${max}&apikey=06220513dde50b713ae8c2e0e0ce15bb`;
-
+  const fetchNews = async (url) => {
     try {
-      setProgress(10);
       const response = await fetch(url);
       if (!response.ok) {
         throw new Error(`Network response was not ok: ${response.statusText}`);
       }
       const data = await response.json();
-      setProgress(30);
-
-      setArticles(data.articles || []);
-      setTotalArticles(data.totalArticles || 0);
-      setLoading(false);
-      setProgress(100);
+      return data;
     } catch (error) {
       console.error('Error fetching data:', error);
-      setLoading(false);
-      setProgress(100);
+      return null;
     }
   };
 
-  useEffect(() => {
-    document.title = `${capitalizeFLetter(category)} - ZenithTimes`;
-    updateNews();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [category]); // Dependency array includes category to re-fetch news when the category changes
+  const updateNews = async () => {
+    const url = `https://gnews.io/api/v4/top-headlines?category=${category}&lang=en&max=8&apikey=${apiKey}`;
+
+    setProgress(10);
+    const data = await fetchNews(url);
+    if (data) {
+      setArticles(data.articles || []);
+      setTotalArticles(data.totalArticles || 0);
+    }
+    setLoading(false);
+    setProgress(100);
+  };
 
   const fetchMoreData = async () => {
-    const offset = page * max; // Calculating offset based on page and max number of articles
-    const url = `https://gnews.io/api/v4/top-headlines?category=${category}&lang=en&offset=${offset}&country=${country}&max=${max}&apikey=06220513dde50b713ae8c2e0e0ce15bb`;
-    
-    setPage(page + 1);
+    const url = `https://gnews.io/api/v4/top-headlines?category=${category}&lang=en&offset=${page * 8}&max=8&apikey=${apiKey}`;
+
+    setPage((prevPage) => prevPage + 1);
     setLoading(true);
 
-    try {
-      const response = await fetch(url);
-      const parsedData = await response.json();
-
-      // Filter out duplicate articles based on URL and title
-      const newArticles = parsedData.articles.filter(
+    const data = await fetchNews(url);
+    if (data) {
+      const newArticles = data.articles.filter(
         (newArticle) =>
           !articles.some(
             (existingArticle) =>
@@ -72,14 +63,16 @@ const News = ({
           )
       );
 
-      setArticles([...articles, ...newArticles]);
-      setTotalArticles(parsedData.totalArticles);
-      setLoading(false);
-    } catch (error) {
-      console.error('Error fetching more data:', error);
-      setLoading(false);
+      setArticles((prevArticles) => [...prevArticles, ...newArticles]);
+      setTotalArticles(data.totalArticles);
     }
+    setLoading(false);
   };
+
+  useEffect(() => {
+    document.title = `${capitalizeFLetter(category)} - ZenithTimes`;
+    updateNews();
+  }, [category, apiKey]);
 
   return (
     <>
@@ -89,27 +82,17 @@ const News = ({
       {loading && <Spinner mode={mode} />}
       <InfiniteScroll
         dataLength={articles.length}
-        next={fetchMoreData} // Pass the function reference, not the result
+        next={fetchMoreData}
         hasMore={articles.length !== totalArticles}
         loader={loading && <Spinner mode={mode} />}
       >
-        <div className="container my-3">
+        <div className="container">
           <div className="row">
-            {articles &&
-              articles.map((element) => (
-                <div className="col-md-4" key={element.url}>
-                  <NewsItem
-                    title={element.title}
-                    description={element.description}
-                    imageUrl={element.image}
-                    newsUrl={element.url}
-                    author={element.source.name}
-                    date={element.publishedAt}
-                    source={element.source.url}
-                    mode={mode}
-                  />
-                </div>
-              ))}
+            {articles.map((article) => (
+              <div className="col-md-4" key={article.url}>
+                <NewsItem article={article} mode={mode} />
+              </div>
+            ))}
           </div>
         </div>
       </InfiniteScroll>
@@ -118,12 +101,10 @@ const News = ({
 };
 
 News.propTypes = {
-  country: PropTypes.string,
-  max: PropTypes.number,
-  category: PropTypes.string,
   apiKey: PropTypes.string.isRequired,
   setProgress: PropTypes.func.isRequired,
-  mode: PropTypes.string, // Added mode prop to propTypes
+  category: PropTypes.string,
+  mode: PropTypes.string,
 };
 
 export default News;
